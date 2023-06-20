@@ -5,6 +5,7 @@ require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'net/imap'
 
 Dir[File.expand_path('../spec/support/**/*.rb', __dir__)].each { |file| require file }
 
