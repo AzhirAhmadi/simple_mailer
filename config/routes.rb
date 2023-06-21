@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   
   namespace :api do
     namespace :v1 do
-      resources :users, only: %i[index show create update destroy]
+      resources :users, only: %i[index show create update destroy] do
+        resources :mail_keys, only: %i[index] do
+          get :sync, on: :collection
+        end 
+      end
     end
   end
 end
