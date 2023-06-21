@@ -1,4 +1,10 @@
-# README
+# SIMPLE MAILER
+
+* Description
+    - This is a simple mailer application that allows users:
+        - To send emails to other users.(in development)
+        - To read from their mailbox.
+    
 
 * Ruby version
     3.1.3
