@@ -19,6 +19,29 @@
           }
         }
       },
+      "Mail": {
+        "type": "object",
+        "required": [
+          "from",
+          "to",
+          "subject",
+          "body"
+        ],
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          }
+        }
+      },
       "MailKey": {
         "type": "object",
         "required": [
@@ -134,6 +157,49 @@
         "responses": {
           "200": {
             "description": "Mail keys are synced successfully"
+          }
+        }
+      }
+    },
+    "api/v1/users/{user_id}/mails/{id}": {
+      "get": {
+        "summary": "Returns the mail",
+        "tags": [
+          "Mails"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mail is returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Mail"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

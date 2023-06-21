@@ -154,6 +154,38 @@
           null
         ]
       },
+      "/Users/azhirahmadi/azhir/simple_mailer/app/controllers/api/v1/mails_controller.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          0,
+          null,
+          null,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/azhirahmadi/azhir/simple_mailer/app/controllers/api/v1/users_controller.rb": {
         "lines": [
           null,
@@ -205,6 +237,6 @@
         ]
       }
     },
-    "timestamp": 1687345216
+    "timestamp": 1687361221
   }
 }
