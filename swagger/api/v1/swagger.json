@@ -19,6 +19,21 @@
           }
         }
       },
+      "MailKey": {
+        "type": "object",
+        "required": [
+          "id",
+          "subject"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "subject": {
+            "type": "string"
+          }
+        }
+      },
       "UserIndex": {
         "type": "object",
         "required": [
@@ -62,6 +77,67 @@
     }
   },
   "paths": {
+    "api/v1/users/{user_id}/mail_keys": {
+      "get": {
+        "summary": "Returns all mail_keys",
+        "tags": [
+          "MailKeys"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mail keys are returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/MailKey"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "api/v1/users/{user_id}/mail_keys/sync": {
+      "get": {
+        "summary": "Sync all mail_keys with user's mail box",
+        "tags": [
+          "MailKeys"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mail keys are synced successfully"
+          }
+        }
+      }
+    },
     "api/v1/users": {
       "post": {
         "summary": "Creates a user",
