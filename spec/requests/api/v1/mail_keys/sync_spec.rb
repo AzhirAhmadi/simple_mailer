@@ -6,11 +6,11 @@ RSpec.describe Api::V1::MailKeysController, type: :request do
   let(:user) { create(:user) }
   let(:fetch_inbox_subjects_result) do
     [
-      { message_id: '1', subject: 'new_subject_1' },
-      { message_id: '2', subject: 'new_subject_2' },
-      { message_id: '3', subject: 'new_subject_3' },
-      { message_id: '4', subject: 'new_subject_4' },
-      { message_id: '5', subject: 'new_subject_5' }
+      { message_id: 1, subject: 'new_subject_1' },
+      { message_id: 2, subject: 'new_subject_2' },
+      { message_id: 3, subject: 'new_subject_3' },
+      { message_id: 4, subject: 'new_subject_4' },
+      { message_id: 5, subject: 'new_subject_5' }
     ]
   end
   let!(:mail_keys) { create_list(:mail_key, 5, user_id: user.id) }

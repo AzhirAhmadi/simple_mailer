@@ -23,8 +23,8 @@ RSpec.describe Mail::SyncMailKeys, type: :service do
       context 'for existing mail keys' do
         let(:fetch_inbox_subjects_result) do
           [
-            { message_id: '1', subject: 'new_subject_1' },
-            { message_id: '2', subject: 'new_subject_2' }
+            { message_id: 1, subject: 'new_subject_1' },
+            { message_id: 2, subject: 'new_subject_2' }
           ]
         end
 
@@ -49,8 +49,8 @@ RSpec.describe Mail::SyncMailKeys, type: :service do
       context 'for new mail keys' do
         let(:fetch_inbox_subjects_result) do
           [
-            { message_id: '1', subject: 'subject_1' },
-            { message_id: '2', subject: 'subject_2' }
+            { message_id: 1, subject: 'subject_1' },
+            { message_id: 2, subject: 'subject_2' }
           ]
         end
 

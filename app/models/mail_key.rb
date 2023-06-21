@@ -14,7 +14,7 @@ end
 #  subject    :string           default("no subject"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  message_id :string           not null
+#  message_id :integer          not null
 #  user_id    :bigint           not null
 #
 # Indexes

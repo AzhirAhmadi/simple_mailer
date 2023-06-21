@@ -85,9 +85,9 @@ RSpec.describe Mail::FetchInboxSubjects, type: :service do
 
       it 'returns array of subjects' do
         expect(subject.value!).to eq([
-          { message_id: '1', subject: 'Mail Subject1' },
-          { message_id: '2', subject: 'no subject' },
-          { message_id: '3', subject: 'Mail2' }
+          { message_id: 1, subject: 'Mail Subject1' },
+          { message_id: 2, subject: 'no subject' },
+          { message_id: 3, subject: 'Mail2' }
         ])
       end
     end
