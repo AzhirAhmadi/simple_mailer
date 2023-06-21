@@ -5,17 +5,25 @@ module Mail
     option :user, type: Types.Instance(User)
 
     def call
-      result = imap.mailbox(name: 'INBOX')
-        .search(query: 'ALL')
-        .fetch(query: 'BODY[HEADER.FIELDS (SUBJECT)]')
+      filtered_result = mail_data.map do |i|
+        { message_id: i.seqno.to_s, subject: i.attr.values.last }
+      end
 
-      filtered_result = result.flat_map { |i| i.attr.values }
-        .map { |i| i.gsub('Subject:', '').strip.presence || 'no subject' }
+      filtered_result.each do |i|
+        subject = i[:subject].gsub('Subject:', '').strip
+        i[:subject] = subject.presence || 'no subject'
+      end
 
       Success(filtered_result)
     end
 
     private
+
+    def mail_data
+      imap.mailbox(name: 'INBOX')
+        .search(query: 'ALL')
+        .fetch(query: 'BODY.PEEK[HEADER.FIELDS (SUBJECT)]')
+    end
 
     def imap
       @_imap ||= Mail::ImapConnection.connect(**ceredentials)

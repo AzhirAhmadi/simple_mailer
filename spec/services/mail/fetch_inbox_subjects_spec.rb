@@ -28,11 +28,12 @@ RSpec.describe Mail::FetchInboxSubjects, type: :service do
       let(:search) { Mail::Queries::Search.new(imap: imap) }
       let(:message_ids) { [1, 2, 3] }
       let(:fetch) { Mail::Queries::Fetch.new(imap: imap, message_ids: message_ids) }
+      let(:imap_result_struct) { Struct.new(:seqno, :attr) }
       let(:result) do
         [
-          Struct.new(:attr).new({ 'Query Code' => 'Subject: Mail Subject1' }),
-          Struct.new(:attr).new({ 'Query Code' => 'Subject:' }),
-          Struct.new(:attr).new({ 'Query Code' => 'Subject: Mail2  ' })
+          imap_result_struct.new(1, { 'Query Code' => 'Subject: Mail Subject1' }),
+          imap_result_struct.new(2, { 'Query Code' => 'Subject:' }),
+          imap_result_struct.new(3, { 'Query Code' => 'Subject: Mail2  ' })
         ]
       end
 
@@ -83,7 +84,11 @@ RSpec.describe Mail::FetchInboxSubjects, type: :service do
       end
 
       it 'returns array of subjects' do
-        expect(subject.value!).to eq(['Mail Subject1', 'no subject', 'Mail2'])
+        expect(subject.value!).to eq([
+          { message_id: 1, subject: 'Mail Subject1' },
+          { message_id: 2, subject: 'no subject' },
+          { message_id: 3, subject: 'Mail2' }
+        ])
       end
     end
 
