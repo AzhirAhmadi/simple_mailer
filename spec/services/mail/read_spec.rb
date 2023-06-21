@@ -37,6 +37,9 @@ RSpec.describe Mail::Read, type: :service do
           imap_result_struct.new(3, { 'Query Code' => 'Subject: Mail2  ' })
         ]
       end
+      let(:email) do
+        Mail.new
+      end
 
       before do
         allow(Net::IMAP).to receive(:new).and_return(imap)
@@ -51,6 +54,12 @@ RSpec.describe Mail::Read, type: :service do
 
         allow(imap).to receive(:fetch).and_return(result)
         allow(fetch).to receive(:fetch).and_call_original
+
+        allow(Mail).to receive(:new).and_return(email)
+        allow(email).to receive(:from).and_return(['from'])
+        allow(email).to receive(:to).and_return(['to'])
+        allow(email).to receive(:subject).and_return('subject')
+        allow(email).to receive(:body).and_return('body')
       end
 
       it { is_expected.to be_success }
@@ -88,7 +97,7 @@ RSpec.describe Mail::Read, type: :service do
       end
 
       it 'returns Mail of subjects' do
-        expect(subject.value!).to be_a(Mail::Message)
+        expect(subject.value!).to be_a(MailStruct)
       end
     end
 

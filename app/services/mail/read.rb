@@ -7,9 +7,15 @@ module Mail
     option :message_id, type: Types.Instance(Integer)
 
     def call
-      raw_email = read_email_from_mail_box.first.attr['RFC822']
+      raw_email = read_email_from_mail_box.first.attr['BODY[]']
 
-      Success(Mail.new(raw_email))
+      email = Mail.new(raw_email)
+      Success(
+        MailStruct.new(from: email.from.first,
+                       to: email.to.first,
+                       subject: email.subject,
+                       body: email.body.to_s)
+      )
     end
 
     private

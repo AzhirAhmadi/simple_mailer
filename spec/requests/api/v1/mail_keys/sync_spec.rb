@@ -18,6 +18,7 @@ RSpec.describe Api::V1::MailKeysController, type: :request do
   before do
     allow(Mail::FetchInboxSubjects).to receive(:call)
       .and_return(Dry::Monads::Success(fetch_inbox_subjects_result))
+    allow(Mail::SyncMailKeys).to receive(:call).and_call_original
   end
 
   path 'api/v1/users/{user_id}/mail_keys/sync' do
@@ -32,6 +33,7 @@ RSpec.describe Api::V1::MailKeysController, type: :request do
       response 200, 'Mail keys are synced successfully' do
         perform_request! do
           expect(MailKey.count).to eq(5)
+          expect(Mail::SyncMailKeys).to have_received(:call).with(user: user)
         end
       end
     end
