@@ -7,8 +7,10 @@ module Mail
       option :imap, type: Types::Instance(Net::IMAP)
       option :message_ids, type: Types::Instance(Array)
 
-      def fetch(query:)
-        imap.fetch(message_ids, query)
+      def fetch(query:, custom_message_ids: [])
+        return imap.fetch(message_ids, query) if custom_message_ids.blank?
+
+        imap.fetch(message_ids & custom_message_ids, query)
       end
     end
   end
