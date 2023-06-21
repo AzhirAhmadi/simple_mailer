@@ -9,7 +9,8 @@ Rails.application.routes.draw do
       resources :users, only: %i[index show create update destroy] do
         resources :mail_keys, only: %i[index] do
           get :sync, on: :collection
-        end 
+        end
+        resources :mails, only: %i[show]
       end
     end
   end
