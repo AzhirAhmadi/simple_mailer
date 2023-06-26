@@ -7,7 +7,10 @@ RSpec.describe Api::V1::UsersController, type: :request do
     create(
       :user,
       email: 'email@test.com',
-      credential_data: { key1: 'value1' }.to_json
+      credential_data: {
+        imap: { key1: 'value1' },
+        smtp: { key1: 'value1' }
+      }.to_json
     )
   end
 
@@ -42,7 +45,10 @@ RSpec.describe Api::V1::UsersController, type: :request do
         {
           data: {
             email: 'new_email@test.com',
-            credential_data: { key2: 'value2' }.to_json
+            credential_data: {
+              imap: { key2: 'value2' },
+              smtp: { key2: 'value2' }
+            }.to_json
           }
         }
       end
@@ -56,7 +62,13 @@ RSpec.describe Api::V1::UsersController, type: :request do
 
           expect(data[:id]).to eq(user.id)
           expect(data[:email]).to eq('new_email@test.com')
-          expect(user.credential_data).to eq({ key2: 'value2' }.to_json)
+
+          expect(user.credential_data).to eq(
+            {
+              imap: { key2: 'value2' },
+              smtp: { key2: 'value2' }
+            }.to_json
+          )
         end
       end
 

@@ -33,7 +33,10 @@ RSpec.describe Api::V1::UsersController, type: :request do
           {
             data: {
               email: 'email@test.com',
-              credential_data: { key1: 'value1' }.to_json
+              credential_data: {
+                imap: { key1: 'value1' },
+                smtp: { key1: 'value1' }
+              }.to_json
             }
           }
         end
@@ -55,7 +58,10 @@ RSpec.describe Api::V1::UsersController, type: :request do
           {
             data: {
               email: 'invalid_email',
-              credential_data: { key1: 'value1' }.to_json
+              credential_data: {
+                imap: { key1: 'value1' },
+                smtp: { key1: 'value1' }
+              }.to_json
             }
           }
         end

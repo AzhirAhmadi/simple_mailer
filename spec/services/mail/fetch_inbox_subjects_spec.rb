@@ -8,11 +8,13 @@ RSpec.describe Mail::FetchInboxSubjects, type: :service do
   let(:user) { create(:user, credential_data: credential_data) }
   let(:credential_data) do
     {
-      url: 'imap.gmail.com',
-      port: 993,
-      user_name: 'user_email',
-      password: 'user_password'
-    }
+      imap: {
+        url: 'imap.gmail.com',
+        port: 993,
+        user_name: 'user_email',
+        password: 'user_password'
+      }
+    }.to_json
   end
 
   let(:attributes) do

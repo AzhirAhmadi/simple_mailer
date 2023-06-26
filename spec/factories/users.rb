@@ -3,7 +3,12 @@
 FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "user-#{n}@dataguard.de" }
-    credential_data { { key1: 'value1', key2: 'value2' } }
+    credential_data {
+      {
+        imap: { key1: 'value1', key2: 'value2' },
+        smtp: { key1: 'value1', key2: 'value2' }
+      }.to_json
+    }
   end
 end
 

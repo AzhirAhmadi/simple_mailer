@@ -3,13 +3,7 @@
 require 'swagger_helper'
 
 RSpec.describe Api::V1::UsersController, type: :request do
-  let!(:user) do
-    create(
-      :user,
-      email: 'email@test.com',
-      credential_data: { key1: 'value1' }.to_json
-    )
-  end
+  let!(:user) { create(:user) }
 
   path 'api/v1/users/{id}' do
     delete 'Updates the user' do
