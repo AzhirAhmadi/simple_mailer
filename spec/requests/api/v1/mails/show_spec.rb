@@ -12,7 +12,7 @@ RSpec.describe Api::V1::MailsController, type: :request do
   end
 
   before do
-    allow(Mail::Read).to receive(:call).and_return(Dry::Monads::Success(mail))
+    allow(Mail::Imap::Read).to receive(:call).and_return(Dry::Monads::Success(mail))
   end
 
   path 'api/v1/users/{user_id}/mails/{id}' do
@@ -30,7 +30,7 @@ RSpec.describe Api::V1::MailsController, type: :request do
         schema data: '#/components/schemas/Mail'
 
         perform_request! do
-          expect(Mail::Read).to have_received(:call).with(
+          expect(Mail::Imap::Read).to have_received(:call).with(
             user: user,
             message_id: 1
           )

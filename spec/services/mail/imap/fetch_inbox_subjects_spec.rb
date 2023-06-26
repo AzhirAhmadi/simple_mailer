@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Mail::Read, type: :service do
+RSpec.describe Mail::Imap::FetchInboxSubjects, type: :service do
   subject { described_class.call(**attributes) }
 
   let(:user) { create(:user, credential_data: credential_data) }
@@ -20,18 +20,17 @@ RSpec.describe Mail::Read, type: :service do
   let(:attributes) do
     {
       user: user,
-      credential_key: 'imap',
-      message_id: 1
+      credential_key: 'imap'
     }
   end
 
   describe '#call' do
     context 'when user is provided' do
       let(:imap) { Net::IMAP.new('imap.gmail.com', port: 993, ssl: true) }
-      let(:select) { Mail::Queries::Select.new(imap: imap) }
-      let(:search) { Mail::Queries::Search.new(imap: imap) }
+      let(:select) { Mail::Imap::Queries::Select.new(imap: imap) }
+      let(:search) { Mail::Imap::Queries::Search.new(imap: imap) }
       let(:message_ids) { [1, 2, 3] }
-      let(:fetch) { Mail::Queries::Fetch.new(imap: imap, message_ids: message_ids) }
+      let(:fetch) { Mail::Imap::Queries::Fetch.new(imap: imap, message_ids: message_ids) }
       let(:imap_result_struct) { Struct.new(:seqno, :attr) }
       let(:result) do
         [
@@ -40,15 +39,12 @@ RSpec.describe Mail::Read, type: :service do
           imap_result_struct.new(3, { 'Query Code' => 'Subject: Mail2  ' })
         ]
       end
-      let(:email) do
-        Mail.new
-      end
 
       before do
         allow(Net::IMAP).to receive(:new).and_return(imap)
         allow(imap).to receive(:login).and_return(true)
 
-        allow(Mail::ImapConnection).to receive(:connect).and_return(select)
+        allow(Mail::Imap::Connection).to receive(:connect).and_return(select)
         allow(imap).to receive(:select).and_return(true)
         allow(select).to receive(:mailbox).and_return(search)
 
@@ -57,20 +53,14 @@ RSpec.describe Mail::Read, type: :service do
 
         allow(imap).to receive(:fetch).and_return(result)
         allow(fetch).to receive(:fetch).and_call_original
-
-        allow(Mail).to receive(:new).and_return(email)
-        allow(email).to receive(:from).and_return(['from'])
-        allow(email).to receive(:to).and_return(['to'])
-        allow(email).to receive(:subject).and_return('subject')
-        allow(email).to receive(:body).and_return('body')
       end
 
       it { is_expected.to be_success }
 
-      it 'calls Mail::ImapConnection.connect' do
+      it 'calls Mail::Connection.connect' do
         subject
 
-        expect(Mail::ImapConnection).to have_received(:connect).with(
+        expect(Mail::Imap::Connection).to have_received(:connect).with(
           url: 'imap.gmail.com',
           port: 993,
           user_name: 'user_email',
@@ -93,14 +83,15 @@ RSpec.describe Mail::Read, type: :service do
       it 'calls fetch.fetch' do
         subject
 
-        expect(fetch).to have_received(:fetch).with(
-          query: 'BODY.PEEK[]',
-          custom_message_ids: [1]
-        )
+        expect(fetch).to have_received(:fetch).with(query: 'BODY.PEEK[HEADER.FIELDS (SUBJECT)]')
       end
 
-      it 'returns Mail of subjects' do
-        expect(subject.value!).to be_a(MailStruct)
+      it 'returns array of subjects' do
+        expect(subject.value!).to eq([
+          { message_id: 1, subject: 'Mail Subject1' },
+          { message_id: 2, subject: 'no subject' },
+          { message_id: 3, subject: 'Mail2' }
+        ])
       end
     end
 

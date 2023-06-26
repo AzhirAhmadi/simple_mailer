@@ -5,7 +5,7 @@ module Api
     class MailsController < ApplicationController
       # GET /api/v1/users/:user_id/mails/:id
       def show
-        result = Mail::Read.call(user: user, message_id: params[:id].to_i).value!
+        result = Mail::Imap::Read.call(user: user, message_id: params[:id].to_i).value!
 
         render json: result
       end

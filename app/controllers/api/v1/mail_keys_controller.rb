@@ -10,7 +10,7 @@ module Api
 
       # GET /api/v1/users/:user_id/mail_keys/sync
       def sync
-        Mail::SyncMailKeys.call(user: user)
+        Mail::Imap::SyncMailKeys.call(user: user)
 
         render json: mail_keys, status: :ok
       end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Mail::ImapConnection, type: :service do
+RSpec.describe Mail::Imap::Connection, type: :service do
   subject { described_class.connect(**attributes) }
 
   let(:attributes) do
@@ -42,8 +42,8 @@ RSpec.describe Mail::ImapConnection, type: :service do
         )
       end
 
-      it 'returns instance of Mail::Queries::Select' do
-        expect(subject).to be_instance_of(Mail::Queries::Select)
+      it 'returns instance of Mail::Imap::Queries::Select' do
+        expect(subject).to be_instance_of(Mail::Imap::Queries::Select)
       end
     end
 

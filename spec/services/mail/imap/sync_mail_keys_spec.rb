@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Mail::SyncMailKeys, type: :service do
+RSpec.describe Mail::Imap::SyncMailKeys, type: :service do
   subject { described_class.call(**attributes) }
 
   let(:user) { create(:user) }
@@ -16,7 +16,7 @@ RSpec.describe Mail::SyncMailKeys, type: :service do
   describe '#call' do
     context 'when user is provided' do
       before do
-        allow(Mail::FetchInboxSubjects).to receive(:call)
+        allow(Mail::Imap::FetchInboxSubjects).to receive(:call)
           .and_return(Dry::Monads::Success(fetch_inbox_subjects_result))
       end
 
