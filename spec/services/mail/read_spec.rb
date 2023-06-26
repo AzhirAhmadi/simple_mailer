@@ -20,6 +20,7 @@ RSpec.describe Mail::Read, type: :service do
   let(:attributes) do
     {
       user: user,
+      credential_key: 'imap',
       message_id: 1
     }
   end

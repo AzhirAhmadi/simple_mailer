@@ -19,7 +19,8 @@ RSpec.describe Mail::FetchInboxSubjects, type: :service do
 
   let(:attributes) do
     {
-      user: user
+      user: user,
+      credential_key: 'imap'
     }
   end
 

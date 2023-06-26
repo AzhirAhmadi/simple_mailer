@@ -3,6 +3,7 @@
 module Mail
   class LoginImap < ApplicationService
     option :user, type: Types.Instance(User)
+    option :credential_key, type: Types::String
 
     protected
 
@@ -12,11 +13,15 @@ module Mail
 
     def ceredentials
       {
-        url: user.credential_hash[:imap][:url],
-        port: user.credential_hash[:imap][:port],
-        user_name: user.credential_hash[:imap][:user_name],
-        password: user.credential_hash[:imap][:password]
+        url: credentials[:url],
+        port: credentials[:port],
+        user_name: credentials[:user_name],
+        password: credentials[:password]
       }
+    end
+
+    def credentials
+      user.credential_hash[credential_key.to_sym]
     end
   end
 end
