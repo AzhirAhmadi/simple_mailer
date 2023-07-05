@@ -48,7 +48,7 @@ RSpec.describe Mail::Imap::Connection, type: :service do
     end
 
     context 'when fields are not provided' do
-      context 'for url is not provided' do
+      context 'for url' do
         let(:attributes) { super().except(:url) }
 
         it 'raises KeyError error' do
@@ -56,7 +56,7 @@ RSpec.describe Mail::Imap::Connection, type: :service do
         end
       end
 
-      context 'for port is not provided' do
+      context 'for port' do
         let(:attributes) { super().except(:port) }
 
         it 'raises KeyError error' do
@@ -64,7 +64,7 @@ RSpec.describe Mail::Imap::Connection, type: :service do
         end
       end
 
-      context 'for user_name is not provided' do
+      context 'for user_name' do
         let(:attributes) { super().except(:user_name) }
 
         it 'raises KeyError error' do
@@ -72,7 +72,7 @@ RSpec.describe Mail::Imap::Connection, type: :service do
         end
       end
 
-      context 'for password is not provided' do
+      context 'for password' do
         let(:attributes) { super().except(:password) }
 
         it 'raises KeyError error' do

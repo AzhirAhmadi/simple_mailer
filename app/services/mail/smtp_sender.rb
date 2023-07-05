@@ -17,6 +17,8 @@ module Mail
       smtp.start(*start_params)
       smtp.send_message(*send_message_params)
       smtp.finish
+
+      Success(nil)
     end
 
     private
