@@ -161,6 +161,67 @@
         }
       }
     },
+    "api/v1/users/{user_id}/mails/": {
+      "post": {
+        "summary": "Sends an email",
+        "tags": [
+          "Emails"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Email is sent successfully"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "required": [
+                      "to",
+                      "cc",
+                      "bcc",
+                      "subject",
+                      "body"
+                    ],
+                    "properties": {
+                      "to": {
+                        "type": "string"
+                      },
+                      "cc": {
+                        "type": "string"
+                      },
+                      "bcc": {
+                        "type": "string"
+                      },
+                      "subject": {
+                        "type": "string"
+                      },
+                      "body": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "api/v1/users/{user_id}/mails/{id}": {
       "get": {
         "summary": "Returns the mail",

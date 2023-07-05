@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2023-06-21T17:27:01+02:00">2023-06-21T17:27:01+02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2023-07-05T14:22:32+02:00">2023-07-05T14:22:32+02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="red">
-  59.79%
+  58.42%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.6
+         0.58
        </span>
     </span> hits/line
     )
@@ -43,11 +43,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>97</b> relevant lines,
-    <span class="green"><b>58</b> lines covered</span> and
-    <span class="red"><b>39</b> lines missed. </span>
+    <b>101</b> relevant lines,
+    <span class="green"><b>59</b> lines covered</span> and
+    <span class="red"><b>42</b> lines missed. </span>
     (<span class="red">
-  59.79%
+  58.42%
 </span>
 )
   </div>
@@ -83,12 +83,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#08cdb1b4c7fc039d292a5afe35398234a72d63a7" class="src_link" title="app/controllers/api/v1/mails_controller.rb">app/controllers/api/v1/mails_controller.rb</a></td>
-            <td class="red strong cell--number t-file__coverage">61.54 %</td>
-            <td class="cell--number">28</td>
-            <td class="cell--number">13</td>
+            <td class="red strong cell--number t-file__coverage">52.94 %</td>
+            <td class="cell--number">38</td>
+            <td class="cell--number">17</td>
+            <td class="cell--number">9</td>
             <td class="cell--number">8</td>
-            <td class="cell--number">5</td>
-            <td class="cell--number">0.62</td>
+            <td class="cell--number">0.53</td>
             
           </tr>
         
@@ -217,14 +217,14 @@
     <span class="group_name">Controllers</span>
     (<span class="covered_percent">
       <span class="red">
-  59.79%
+  58.42%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.6
+         0.58
        </span>
     </span> hits/line
     )
@@ -237,11 +237,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>97</b> relevant lines,
-    <span class="green"><b>58</b> lines covered</span> and
-    <span class="red"><b>39</b> lines missed. </span>
+    <b>101</b> relevant lines,
+    <span class="green"><b>59</b> lines covered</span> and
+    <span class="red"><b>42</b> lines missed. </span>
     (<span class="red">
-  59.79%
+  58.42%
 </span>
 )
   </div>
@@ -277,12 +277,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#08cdb1b4c7fc039d292a5afe35398234a72d63a7" class="src_link" title="app/controllers/api/v1/mails_controller.rb">app/controllers/api/v1/mails_controller.rb</a></td>
-            <td class="red strong cell--number t-file__coverage">61.54 %</td>
-            <td class="cell--number">28</td>
-            <td class="cell--number">13</td>
+            <td class="red strong cell--number t-file__coverage">52.94 %</td>
+            <td class="cell--number">38</td>
+            <td class="cell--number">17</td>
+            <td class="cell--number">9</td>
             <td class="cell--number">8</td>
-            <td class="cell--number">5</td>
-            <td class="cell--number">0.62</td>
+            <td class="cell--number">0.53</td>
             
           </tr>
         
@@ -696,7 +696,7 @@
 
             
 
-            <code class="ruby">        Mail::SyncMailKeys.call(user: user)</code>
+            <code class="ruby">        Mail::Imap::SyncMailKeys.call(user: user)</code>
           </li>
         </div>
       
@@ -930,7 +930,7 @@
     <h3>app/controllers/api/v1/mails_controller.rb</h3>
     <h4>
       <span class="red">
-  61.54%
+  52.94%
 </span>
 
       lines covered
@@ -939,9 +939,9 @@
     
 
     <div class="t-line-summary">
-      <b>13</b> relevant lines.
-      <span class="green"><b>8</b> lines covered</span> and
-      <span class="red"><b>5</b> lines missed.</span>
+      <b>17</b> relevant lines.
+      <span class="green"><b>9</b> lines covered</span> and
+      <span class="red"><b>8</b> lines missed.</span>
     </div>
 
     
@@ -1035,7 +1035,7 @@
 
             
 
-            <code class="ruby">        result = Mail::Read.call(user: user, message_id: params[:id].to_i).value!</code>
+            <code class="ruby">        result = Mail::Imap::Read.call(user: user, message_id: params[:id].to_i).value!</code>
           </li>
         </div>
       
@@ -1090,40 +1090,40 @@
 
             
 
-            <code class="ruby">      private</code>
+            <code class="ruby">      def create</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="14">
+          <li class="missed" data-hits="0" data-linenumber="14">
             
             
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">        arributes = create_params.to_h</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="15">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="15">
+            
             
 
             
 
-            <code class="ruby">      def users</code>
+            <code class="ruby">          .merge(credentials: user.credential_hash[:smtp])</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="16">
+          <li class="never" data-hits="" data-linenumber="16">
             
             
 
             
 
-            <code class="ruby">        @_users ||= User.all</code>
+            <code class="ruby">          .deep_symbolize_keys</code>
           </li>
         </div>
       
@@ -1134,12 +1134,23 @@
 
             
 
-            <code class="ruby">      end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="18">
+          <li class="missed" data-hits="0" data-linenumber="18">
+            
+            
+
+            
+
+            <code class="ruby">        result = Mail::SmtpSender.call(**arributes)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="19">
             
             
 
@@ -1150,24 +1161,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="19">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      def user</code>
-          </li>
-        </div>
-      
-        <div>
           <li class="missed" data-hits="0" data-linenumber="20">
             
             
 
             
 
-            <code class="ruby">        @_user ||= users.find(params[:user_id])</code>
+            <code class="ruby">        render json: result.value!</code>
           </li>
         </div>
       
@@ -1200,40 +1200,40 @@
 
             
 
-            <code class="ruby">      def mail_keys</code>
+            <code class="ruby">      private</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="24">
+          <li class="never" data-hits="" data-linenumber="24">
             
             
 
             
 
-            <code class="ruby">        MailKey.where(user_id: user.id)</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="25">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="25">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">      end</code>
+            
+
+            <code class="ruby">      def users</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="26">
+          <li class="missed" data-hits="0" data-linenumber="26">
             
             
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">        @_users ||= User.all</code>
           </li>
         </div>
       
@@ -1244,12 +1244,122 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">      end</code>
           </li>
         </div>
       
         <div>
           <li class="never" data-hits="" data-linenumber="28">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="29">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      def user</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="30">
+            
+            
+
+            
+
+            <code class="ruby">        @_user ||= users.find(params[:user_id])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="31">
+            
+            
+
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="32">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="33">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      def create_params</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="34">
+            
+            
+
+            
+
+            <code class="ruby">        params.require(:data).permit(:to, :subject, :body, cc: [], bcc: [])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="35">
+            
+            
+
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="36">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="37">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="38">
             
             
 
