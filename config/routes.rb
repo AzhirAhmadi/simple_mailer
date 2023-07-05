@@ -10,7 +10,7 @@ Rails.application.routes.draw do
         resources :mail_keys, only: %i[index] do
           get :sync, on: :collection
         end
-        resources :mails, only: %i[show]
+        resources :mails, only: %i[show create]
       end
     end
   end

@@ -15,10 +15,10 @@ module Mail
       smtp = Net::SMTP.new(credentials[:url], credentials[:port])
 
       smtp.start(*start_params)
-      smtp.send_message(*send_message_params)
+      result = smtp.send_message(*send_message_params)
       smtp.finish
 
-      Success(nil)
+      Success(result)
     end
 
     private

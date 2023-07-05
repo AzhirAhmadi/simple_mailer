@@ -10,6 +10,16 @@ module Api
         render json: result
       end
 
+      def create
+        arributes = create_params.to_h
+          .merge(credentials: user.credential_hash[:smtp])
+          .deep_symbolize_keys
+
+        result = Mail::SmtpSender.call(**arributes)
+
+        render json: result.value!
+      end
+
       private
 
       def users
@@ -20,8 +30,8 @@ module Api
         @_user ||= users.find(params[:user_id])
       end
 
-      def mail_keys
-        MailKey.where(user_id: user.id)
+      def create_params
+        params.require(:data).permit(:to, :subject, :body, cc: [], bcc: [])
       end
     end
   end
